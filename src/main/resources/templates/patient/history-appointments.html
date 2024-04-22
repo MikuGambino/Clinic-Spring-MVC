@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>История записей</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+    <div th:replace="~{fragments/account :: patientButtons}"></div>
+    <div class="account-content">
+      <h2 th:if="${appointments.isEmpty()}" class="center">Записей нет</h2>
+      <div class="block appointment-block-patient" th:each="appointment : ${appointments}">
+        <img class="small-img" th:src="'/img/' + ${appointment.getDoctor().getImage()}">
+        <div class="appointment-block-right">
+          <table class="appointment-table">
+            <tr>
+              <td><p>Врач:</p></td>
+              <td th:text="${appointment.getDoctor().getFullname()}"></td>
+            </tr>
+            <tr>
+              <td><p>Начало:</p></td>
+              <td th:text="${appointment.getFormattedStartDateTime()}"></td>
+            </tr>
+            <tr>
+              <td><p>Услуги:</p></td>
+              <td th:text="${appointment.getFormattedTreatments()}"></td>
+            </tr>
+            <tr th:if="${appointment.getComment() != null && !appointment.getComment().isBlank()}">
+              <td><p>Комментарий:</p></td>
+              <td th:text="${appointment.getComment()}"></td>
+            </tr>
+            <tr>
+              <td><p>Стоимость:</p></td>
+              <td th:text="${appointment.getPrice()} + ' рублей'"></td>
+            </tr>
+            <tr>
+              <td><p>Статус:</p></td>
+              <td th:text="${appointment.getStatus().getStatus()}"></td>
+            </tr>
+            <tr th:if="${appointment.getDiagnosis() != null && !appointment.getDiagnosis().isBlank()}">
+              <td><p>Диагноз:</p></td>
+              <td th:text="${appointment.getDiagnosis()}"></td>
+            </tr>
+          </table>
+          <div class="buttons-block">
+            <a th:href="@{/doctors/{id}(id=${appointment.getDoctor().getId()})}"
+               class="button">Оставить отзыв</a>
+            <a th:href="@{/appointments/{id}(id=${appointment.getId()})}"
+               class="button">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

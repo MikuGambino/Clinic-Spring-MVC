@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h1 class="head-title">Регистрация</h1>
+  <div class="content">
+      <div class="narrow-block">
+          <form class="form block"
+                th:action="@{/signup}"
+                th:method="post"
+                th:object="${user}">
+              <label for="username">Логин:</label>
+              <input type="text" th:field="*{username}" name="username" id="username" required>
+              <span th:if="${#fields.hasErrors('username')}" class="red" th:errors="*{username}"></span>
+
+              <label for="password">Пароль:</label>
+              <input type="password" th:field="*{password}" name="password" id="password" required>
+              <span th:if="${#fields.hasErrors('password')}" class="red" th:errors="*{password}"></span>
+
+              <label for="name">Имя:</label>
+              <input type="text" th:field="*{name}" id="name" placeholder="Имя">
+              <span th:if="${#fields.hasErrors('name')}" class="red" th:errors="*{name}"></span>
+
+              <label for="surname">Фамилия:</label>
+              <input type="text" th:field="*{surname}" id="surname" placeholder="Фамилия">
+              <span th:if="${#fields.hasErrors('surname')}" class="red" th:errors="*{surname}"></span>
+
+              <label for="patronymic">Отчество:</label>
+              <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Отчество">
+
+              <label for="birthday">День рождения:</label>
+              <input th:field="*{birthday}" max="2020-01-01" type="date" id="birthday">
+              <span th:if="${#fields.hasErrors('birthday')}" class="red" th:errors="*{birthday}"></span>
+
+              <label for="email">Электронная почта:</label>
+              <input th:field="*{email}" type="text" id="email" required>
+              <span th:if="${#fields.hasErrors('email')}" class="red" th:errors="*{email}"></span>
+
+              <label for="gender">Пол:</label>
+              <select id="gender" th:field="*{gender}">
+                  <option th:value="'Мужской'" th:text="Мужской"></option>
+                  <option th:value="'Женский'" th:text="Женский"></option>
+              </select>
+              <span th:if="${#fields.hasErrors('gender')}" class="red" th:errors="*{gender}"></span>
+
+              <div class="buttons-block-around">
+              <a type="button" class="button" th:href="@{/login}">Назад</a>
+              <input type="submit" value="Регистрация" class="button">
+            </div>
+          </form>
+      </div>
+  </div>
+</div>
+</body>
+</html>

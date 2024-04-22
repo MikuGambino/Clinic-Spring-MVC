@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}">
+<head>
+  <meta charset="UTF-8">
+  <title>Врач</title>
+</head>
+<body>
+  <div layout:fragment="content" class="content">
+    <div class="block">
+      <p th:if="${status} == 'success'" class="title center">Вы успешно записались на приём!</p>
+      <p th:if="${status} == 'transferred'" class="title center">Вы успешно перенесли приём!</p>
+      <p th:if="${status} == 'cancelled'" class="title center">Вы успешно отменили приём!</p>
+      <table th:replace="~{fragments/appointmentInfo :: appointmentInfo}"></table>
+      <table class="table-info" th:if="${cancelledAppointment != null}">
+        <tr>
+          <td><p>Причина отмены:</p></td>
+          <td><p th:text="${cancelledAppointment.getReason()}"></p></td>
+        </tr>
+        <tr>
+          <td><p>Время отмены:</p></td>
+          <td th:text="${cancelledAppointment.getFormattedRejectTime()}"></td>
+        </tr>
+      </table>
+      <div th:if="${isActive}" class="buttons-block center">
+        <a class="button" th:href="@{/account}">В профиль</a>
+        <a class="button" th:href="@{/appointments/{id}/transfer(id=${appointment.getId()})}">Перенести</a>
+        <a class="button red-button" th:href="@{/appointments/{id}/cancel(id=${appointment.getId()})}">Отменить</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

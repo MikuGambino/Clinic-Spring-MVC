@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>$CONTENT_TITLE - $LAYOUT_TITLE</title>
+</head>
+<body>
+  <nav th:fragment="header">
+      <a th:href="@{/specializations}" class="logo">Clinic007</a>
+      <div class="right-nav">
+          <a th:href="@{/account?role=admin}" sec:authorize="${hasRole('ADMIN')}">Админ-панель</a>
+          <a th:href="@{/account?role=doctor}" sec:authorize="${hasRole('DOCTOR')}">Кабинет врача</a>
+          <a th:href="@{/account?role=patient}" sec:authorize="${hasRole('PATIENT')}">Кабинет пациента</a>
+      </div>
+  </nav>
+</body>
+</html>

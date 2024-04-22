@@ -1,0 +1,338 @@
+body{
+    margin: 0;
+    background: #F6F8FB;
+    font-family: 'Open Sans', sans-serif;
+}
+input[type=text], input[type=password], input[type=date],  select{
+    height: 25px;
+}
+h1, h2, h3, p{
+    margin: 0;
+}
+textarea{
+    height: 130px;
+}
+.container{
+    padding: 0 50px;
+    max-width: 1440px;
+    margin: auto;
+}
+.block{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+/* Reset buttons styles */
+.button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.button{
+    text-decoration: none;
+    color: white;
+    background: #27a9ff;
+    border-radius: 8px;
+    min-width: 120px;
+}
+.button:hover{
+    color: #27a9ff;
+    background: white;
+    outline: 1px #27a9ff solid;
+}
+.active{
+    color: #27a9ff;
+    background: white;
+    outline: 1px solid #27a9ff;
+}
+.red-button{
+    background: #ff2626;
+}
+.red-button:hover{
+    color: #ff2626;
+    outline: 1px #ff2626 solid;
+}
+.account-buttons{
+    width: 25%;
+    height: 100%;
+}
+.account-buttons .button{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.content{
+    margin: 10px 0;
+}
+.buttons-content{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.center{
+    text-align: center;
+}
+.head-title{
+    text-align: center;
+    margin-top: 10px;
+}
+.appointment-block{
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.account-content{
+    margin-left: 10px;
+    width: 100%;
+}
+.appointment-block-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.buttons-block{
+    margin-top: 5px;
+}
+.buttons-block-around{
+    display: flex;
+    justify-content: space-around;
+}
+.radio-block div{
+    margin-right: 10px;
+}
+.block-header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px gray solid;
+    align-items: center;
+}
+.notification{
+    border-bottom: 1px gray solid;
+    padding: 10px 0;
+}
+.narrow-block{
+    margin: 10px 35% 0;
+}
+.review-left{
+    width: 25%;
+    margin-right: 20px;
+}
+.review-right{
+    width: 80%
+}
+.review{
+    padding: 20px 0;
+}
+.border-bottom{
+    border-bottom: 1px gray solid;
+}
+.title{
+    font-weight: bold;
+}
+.link{
+    color: #27a9ff;
+    text-decoration: none;
+}
+.link:hover{
+    color: #0034ff;
+}
+.score-block{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.orange{
+    font-size: 25px;
+    color: orange;
+}
+.score-right{
+    margin-left: 10px;
+}
+.score-left{
+    margin-right: 10px;
+}
+.small-img{
+    width: 200px;
+    height: 200px;
+}
+.space-between{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+.user-info-block, .doc-info-block, .spec-services,
+.choose-date-block, .review, .select,
+.review-block, .content-filter, .spec-doctor,
+.timepicker-block, .buttons-block-row, .spec-admin, .price,
+.appointment-block-patient{
+    display: flex;
+    flex-direction: row;
+}
+.margin-top{
+    margin-top: 10px;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.times label, .select label{
+    margin-left: 2px;
+    margin-right: 10px;
+}
+.times input{
+    margin-right: 10px;
+}
+.space-around{
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+.form *{
+    margin: 5px 0;
+}
+.form-review{
+    padding: 10px 0;
+}
+.block-right{
+    margin-left: 20px;
+}
+.specialization{
+    padding: 10px 0;
+    border-top: 1px gray solid;
+}
+.doctor-blocks{
+    width: 80%;
+}
+.filter{
+    margin-left: 10px;
+    width: 20%;
+    height: 100%;
+}
+.filter-content{
+    display: flex;
+    flex-direction: column;
+}
+.spec-doctor, .table-info, .choose-date-block, .timepicker-block, .times{
+    padding: 10px 0;
+}
+.timepicker-block{
+    align-items: center;
+}
+.timepicker-block *, .buttons-block-row *{
+    margin-right: 5px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.spec-admin:nth-child(2){
+    border-top: 0;
+}
+.spec-admin{
+    align-items: center;
+}
+.appointments-block{
+    width: 70%;
+}
+.date-filter{
+    align-items: center;
+    width: 30%;
+}
+.buttons-align-center{
+    display: flex;
+    align-items: center;
+}
+.user-info-block{
+    align-items: center;
+    justify-content: space-between;
+}
+.price, .price * {
+    margin: 0;
+}
+.limpid {
+    opacity: 0;
+}
+.treatments-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+.treatments-block > div {
+    margin-right: 15px;
+    background: #f6f8fb;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+}
+.specialization-choose {
+    width: 15%;
+    margin-right: 50px;
+}
+.table-info tr {
+    min-width: 20%;
+}
+.table-info td {
+    width: 250px
+}
+.table-info-block {
+    align-items: center;
+}
+.appointment-table {
+    margin-bottom: 10px;
+    max-width: 1100px;
+}
+.narrow-center {
+    display: flex;
+    justify-content: center;
+}
+.content-appointment {
+    width: 700px;
+}
+td {
+    padding-right: 20px;
+}
+td, tr {
+    vertical-align: top;
+}
+.appointment-table td:first-child {
+    width: 150px;
+}
+.error {
+    margin-top: 250px;
+}
+.error h1 {
+    font-size: 80px;
+}
+.role-table {
+    max-width: 600px;
+}
+td {
+    padding: 3px 0;
+}
+.role-table td {
+    padding: 5px 0;
+    vertical-align: middle;
+    height: 35px;
+}

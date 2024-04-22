@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список пользователей</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+    <div th:replace="~{fragments/account :: adminButtons}"></div>
+    <div class="account-content">
+      <div class="content-filter">
+        <div class="doctor-blocks">
+          <div th:each="user : ${users}" class="user-info-block block">
+              <div>
+                <p th:text="${user.getFullname()}" class="title"></p>
+                <p th:text="'Дата регистрации: ' + ${user.getFormattedRegistrationDate()}"></p>
+                <p th:text="${user.getFormattedRoles()}"></p>
+              </div>
+              <div>
+                <a type="button" class="button"
+                   th:href="@{/users/{id}(id=${user.id})}">Подробнее</a>
+              </div>
+            </div>
+        </div>
+        <form class="block form filter">
+          <div class="filter-content">
+            <label for="role">Роль пользователя</label>
+            <select name="role" id="role">
+              <option th:value="all" th:text="Все"></option>
+              <option th:value="patient" th:text="Пациент"></option>
+              <option th:value="doctor" th:text="Доктор"></option>
+              <option th:value="admin" th:text="Администратор"></option>
+            </select>
+          </div>
+          <div class="center">
+            <input type="submit" class="button" value="Применить">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

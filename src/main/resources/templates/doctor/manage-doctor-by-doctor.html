@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru"
+      layout:decorate="~{default}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Врач</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css" rel="stylesheet">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="buttons-content">
+        <div th:replace="~{fragments/account :: doctorButtons}"></div>
+        <div class="account-content">
+            <input hidden="" id="doctorId" th:value="${doctor.getId()}">
+            <div>
+                <div class="block">
+                    <div class="block-header">
+                        <p>Общая информация</p>
+                    </div>
+                    <table class="table-info">
+                        <tr>
+                            <td><p>ФИО:</p></td>
+                            <td><p th:text="${doctor.getFullname()}"></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Фотография:</p></td>
+                            <td><img class="small-img" th:src="'/img/' + ${doctor.getImage()}"></td>
+                        </tr>
+                        <tr>
+                            <td><p>Описание:</p></td>
+                            <td th:if="${doctor.getDescription().isEmpty()}"><p th:text="Отсутствует"></p></td>
+                            <td th:unless="${doctor.getDescription().isEmpty()}"><p
+                                    th:text="${doctor.getDescription()}"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Дата начала работы:</td>
+                            <td><p th:text="${doctor.getStartWorkDate()}"></p></td>
+                        </tr>
+                        <tr th:if="${doctor.getEndWorkDate() != null}">
+                            <td>Дата конца работы:</td>
+                            <td><p th:text="${doctor.getEndWorkDate()}"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Статус:</td>
+                            <td th:if="${doctor.getIsEnabled()}"><p>Активен</p></td>
+                            <td th:unless="${doctor.getIsEnabled()}"><p>Не активен</p></td>
+                        </tr>
+                    </table>
+                    <div class="buttons-block">
+                        <a class="button" th:href="@{/doctors/update}">Редактировать</a>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="block-header">
+                        <p>Время работы</p>
+                    </div>
+                    <form class="choose-date-block">
+                        <div>
+                            <div id="datepicker"></div>
+                            <input id="datepicker_value" type="hidden">
+                        </div>
+                        <div class="block-right">
+                            <div>
+                                <p>Добавить время приёма</p>
+                                <div class="timepicker-block">
+                                    <input id="timepicker-start" placeholder="Время начала">
+                                    <input id="timepicker-start-val" type="hidden">
+                                    <p>-</p>
+                                    <input id="timepicker-end" placeholder="Время конца">
+                                    <input id="timepicker-end-val" type="hidden">
+                                    <input class="button" id="addTime" type="submit" value="Добавить">
+                                </div>
+                                <p id="messageAdd"></p>
+                            </div>
+                            <div>
+                                <p>Занятые промежутки времени</p>
+                                <div class="times"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script th:src="@{/js/date-localization.js}"></script>
+    <script th:src="@{/js/date-admin.js}"></script>
+</div>
+</body>
+</html>

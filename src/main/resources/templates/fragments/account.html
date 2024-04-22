@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>$CONTENT_TITLE - $LAYOUT_TITLE</title>
+</head>
+<body>
+  <div th:fragment="account">
+  </div>
+  <div th:fragment="adminButtons" class="block account-buttons">
+    <a type="button" class="button" th:classappend="${activePage} == 'main' ? active : ''"
+       th:href="@{/account?role=admin}">Главная</a>
+    <a type="button" th:classappend="${activePage} == 'doctors' ? active : ''"
+       class="button" th:href="@{/doctors/admin}">Врачи</a>
+    <a type="button" th:classappend="${activePage} == 'specializations' ? active : ''"
+       class="button" th:href="@{/specializations/admin}">Специальности</a>
+    <a type="button" th:classappend="${activePage} == 'reviews' ? active : ''"
+       class="button" th:href="@{/reviews/admin}">Отзывы</a>
+    <a type="button" th:classappend="${activePage} == 'users' ? active : ''"
+       class="button" th:href="@{/users}">Пользователи</a>
+    <a type="button" class="button" th:href="@{/logout}">Выйти из аккаунта</a>
+  </div>
+  <div th:fragment="patientButtons" class="block account-buttons">
+    <a type="button" class="button" th:classappend="${activePage} == 'main' ? active : ''"
+       th:href="@{/account?role=patient}">Главная</a>
+    <a type="button" th:classappend="${activePage} == 'activeApp' ? active : ''"
+       class="button" th:href="@{/appointments/patient/active}">Активные записи</a>
+    <a type="button" th:classappend="${activePage} == 'history' ? active : ''"
+       class="button" th:href="@{/appointments/patient/history}">История записей</a>
+    <a type="button" th:classappend="${activePage} == 'reviews' ? active : ''"
+       class="button" th:href="@{/reviews/patient}">Мои отзывы</a>
+    <a type="button" class="button" th:href="@{/logout}">Выйти из аккаунта</a>
+  </div>
+  <div th:fragment="doctorButtons" class="block account-buttons">
+    <a type="button" class="button" th:classappend="${activePage} == 'main' ? active : ''"
+       th:href="@{/account?role=doctor}">Главная</a>
+    <a type="button" th:classappend="${activePage} == 'docProfile' ? active : ''"
+       class="button" th:href="@{/doctors/manage}">Профиль врача</a>
+    <a type="button" th:classappend="${activePage} == 'activeApp' ? active : ''"
+       class="button" th:href="@{/appointments/doctor/active}">Активные записи</a>
+    <a type="button" th:classappend="${activePage} == 'history' ? active : ''"
+       class="button" th:href="@{/appointments/doctor/history}">История записей</a>
+    <a type="button" class="button" th:href="@{/logout}">Выйти из аккаунта</a>
+  </div>
+</body>
+</html>

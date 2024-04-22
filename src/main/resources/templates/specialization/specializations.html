@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список специальностей</title>
+</head>
+<body>
+      <div layout:fragment="content">
+        <h1 class="head-title">Список специальностей</h1>
+        <div class="content block">
+            <a class="title link specialization" th:href="@{/doctors}">Все врачи</a>
+            <div class="specialization" th:each="spec : ${specializations}">
+                <a class="title link" th:href="@{/doctors(specId=${spec.id})}" th:text="${spec.getTitle()}"></a>
+                <p th:if="${!spec.getDescription().isEmpty()}" th:text="'Описание: ' + ${spec.getDescription()}"></p>
+                <p th:text="'Услуги: ' + ${spec.getFormattedTreatments()}"></p>
+            </div>
+        </div>
+      </div>
+</body>
+</html>

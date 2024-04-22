@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{narrow}">
+<head>
+  <meta charset="UTF-8">
+  <title>Отмена записи</title>
+</head>
+<body>
+<div layout:fragment="content" class="content content-appointment">
+  <div class="block">
+    <table th:replace="~{fragments/appointmentInfo :: appointmentInfo}"></table>
+  </div>
+  <form class="block form" method="post" th:action="@{/appointments/{id}/cancel(id=${appointment.getId()})}">
+    <label for="reject-reason">Введите причину отмены:</label>
+    <textarea id="reject-reason" name="reason" required></textarea>
+    <div class="buttons-block center">
+      <a class="button" th:href="@{/appointments/{id}(id=${appointment.getId()})}">Назад</a>
+      <input type="submit" value="Отменить" class="button">
+    </div>
+  </form>
+</div>
+</body>
+</html>

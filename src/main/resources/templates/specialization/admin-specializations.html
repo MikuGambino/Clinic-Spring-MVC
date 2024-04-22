@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Специальности</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+      <div th:replace="~{fragments/account :: adminButtons}"></div>
+      <div class="account-content">
+          <div class="block">
+              <div class="block-header">
+                  <p>Специальности</p>
+                  <a type="button" class="button" th:href="@{/specializations/add}">Добавить</a>
+              </div>
+              <div th:each="specialization : ${specializations}" class="specialization spec-admin space-between">
+                  <div>
+                      <p th:text="${specialization.getTitle()}" class="title"></p>
+                      <p th:if="${specialization.getFormattedTreatments().isEmpty()}">Услуг нет</p>
+                      <p th:if="${!specialization.getFormattedTreatments().isEmpty()}"
+                         th:text="'Услуги: ' + ${specialization.getFormattedTreatments()}"></p>
+                  </div>
+                  <div class="buttons-block-row">
+                      <form th:method="post"  th:action="@{/specializations/{id}/delete(id=${specialization.id})}">
+                          <input type="submit" class="red-button button" th:value="Удалить">
+                      </form>
+                      <a th:href="@{/specializations/{id}/update(id=${specialization.id})}" class="button">Изменить</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>

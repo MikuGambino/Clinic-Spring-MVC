@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактировать услугу</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h1 class="head-title">Редактировать услугу</h1>
+  <div class="narrow-block">
+    <form class="form block"
+          th:action="@{/specializations/{specId}/treatments/{id}(id=${treatmentId}, specId=${specId})}"
+          th:method="post"
+          th:object="${treatmentRequest}">
+      <label for="title">Название</label>
+      <input type="text" th:field="*{title}" id="title" placeholder="Название">
+      <span th:if="${#fields.hasErrors('title')}" class="red" th:errors="*{title}"></span>
+      <label for="description">Описание</label>
+      <textarea th:field="*{description}" id="description" placeholder="Описание (не обязательно)"></textarea>
+      <label for="price">Цена</label>
+      <input type="number" th:field="*{price}" id="price" placeholder="Цена">
+      <span th:if="${#fields.hasErrors('price')}" class="red" th:errors="*{price}"></span>
+      <label for="beneficiaryDiscount">Скидка для льготников</label>
+      <input type="number" th:field="*{beneficiaryDiscount}" id="beneficiaryDiscount" placeholder="Скидка для льготников">
+      <span th:if="${#fields.hasErrors('beneficiaryDiscount')}" class="red" th:errors="*{beneficiaryDiscount}"></span>
+      <label for="discount">Скидка</label>
+      <input type="number" th:field="*{discount}" id="discount" placeholder="Скидка">
+      <span th:if="${#fields.hasErrors('discount')}" class="red" th:errors="*{discount}"></span>
+      <div class="buttons-block-around">
+        <a type="button" class="button"
+           th:href="@{/specializations/{id}/update(id=${specId})}">Назад</a>
+        <input type="submit" value="Сохранить" class="button">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

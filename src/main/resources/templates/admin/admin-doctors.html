@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список врачей</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+    <div th:replace="~{fragments/account :: adminButtons}"></div>
+    <div class="account-content">
+      <div class="content-filter">
+        <div class="doctor-blocks">
+          <div th:each="doctor : ${doctors}" class="doc-info-block block">
+            <img class="small-img" th:src="'/img/' + ${doctor.getImage()}">
+            <div class="block-right space-between">
+              <div>
+                <p th:text="${doctor.getFullname()}" class="title"></p>
+                <p th:text="${doctor.getFormattedSpecializations()}"></p>
+              </div>
+              <div>
+                <a type="button" class="button"
+                   th:href="@{/doctors/{id}/manage/admin(id=${doctor.id})}">Управлять</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="block form filter">
+          <div class="filter-content">
+            <label for="spec">Специальность врача</label>
+            <select name="spec" id="spec">
+              <option th:value="0" th:text="Все"></option>
+              <option th:each="specialization : ${specializations}"
+                      th:text="${specialization.getTitle()}"
+                      th:value="${specialization.getId()}">
+              </option>
+            </select>
+          </div>
+          <div class="center">
+            <input type="submit" class="button" value="Применить">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

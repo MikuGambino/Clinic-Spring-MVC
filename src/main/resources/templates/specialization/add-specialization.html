@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавить Специальность</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h1 class="head-title">Добавить специальность</h1>
+  <div class="content">
+    <form class="block form" th:action="@{/specializations}" th:method="post" th:object="${specialization}">
+      <label for="title">Название</label>
+      <input type="text" th:field="*{title}" id="title" placeholder="Название">
+      <span th:if="${#fields.hasErrors('title')}" class="red" th:errors="*{title}"></span>
+      <label for="description">Описание</label>
+      <textarea th:field="*{description}" id="description" placeholder="Описание (не обязательно)"></textarea>
+      <div class="buttons-block-around">
+        <a type="button" class="button" th:href="@{/specializations/admin}">Назад</a>
+        <input type="submit" value="Сохранить" class="button">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

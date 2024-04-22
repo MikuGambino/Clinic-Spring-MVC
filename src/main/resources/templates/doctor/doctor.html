@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Врач</title>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+    <div class="block doc-info-block">
+        <img class="small-img" th:src="'/img/' + ${doctor.getImage()}">
+        <div class="block-right space-around">
+            <div>
+                <p th:text="${doctor.getFullname()}" class="title"></p>
+                <p th:text="${doctor.getFormattedSpecializations()}"></p>
+                <p th:text="${doctor.getDescription()}"></p>
+            </div>
+            <div th:if="${canMakeAppointment}">
+                <a th:href="@{/appointments/doctor/{id}(id=${doctor.id})}" class="button">Записаться</a>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="block-header">
+            <p>Отзывы</p>
+        </div>
+        <form class="form form-review" th:if="${canAddReview}" th:object="${reviewForm}"
+              th:action="@{/reviews/doctor/{id}(id=${doctor.id})}"
+              method="post">
+            <p class="title">Оценка:</p>
+            <div class="select">
+                <div>
+                    <input type="radio" th:field="*{score}" value="1" id="score-1" name="score">
+                    <label for="score-1">1</label>
+                </div>
+                <div>
+                    <input type="radio" th:field="*{score}" value="2" id="score-2" name="score">
+                    <label for="score-2">2</label>
+                </div>
+                <div>
+                    <input type="radio" th:field="*{score}" value="3" id="score-3" name="score">
+                    <label for="score-3">3</label>
+                </div>
+                <div>
+                    <input type="radio" th:field="*{score}" value="4" id="score-4" name="score">
+                    <label for="score-4">4</label>
+                </div>
+                <div>
+                    <input type="radio" th:field="*{score}" value="5" id="score-5" name="score" checked="" required>
+                    <label for="score-5">5</label>
+                </div>
+            </div>
+            <span th:if="${#fields.hasErrors('score')}" class="red" th:errors="*{score}"></span>
+            <div class="comment">
+                <label for="description">Комментарий:</label>
+                <textarea th:field="*{description}" id="description"></textarea>
+                <span th:if="${#fields.hasErrors('description')}" class="red" th:errors="*{description}"></span>
+            </div>
+            <input type="submit" class="button" value="Добавить">
+        </form>
+        <div class="review border-bottom" th:if="${patientReview}">
+            <p class="title">Ваш отзыв еще не опубликован</p>
+            <div class="review-left">
+                <p th:text="${patientReview.getPatient().getFullname()}" class="title"></p>
+                <div class="score-block">
+                    <p class="title">Оценка: </p>
+                    <p th:text="'★' + ${patientReview.getScore()}" class="orange score-right"></p>
+                </div>
+                <div th:if="!${patientReview.getDescription().isEmpty()}">
+                    <p th:text="${patientReview.getFormattedCallTime()}"></p>
+                    <p th:text="${patientReview.getFormattedAppointmentDate()}"></p>
+                </div>
+            </div>
+            <div class="review-right">
+                <p class="title">Комментарий:</p>
+                <p th:text="${patientReview.getDescription()}"></p>
+            </div>
+        </div>
+        <div th:each="review : ${reviews}" class="review border-bottom">
+            <div class="review-left">
+                <p th:text="${review.getPatient().getFullname()}" class="title"></p>
+                <div class="score-block">
+                    <p class="title">Оценка: </p>
+                    <p th:text="'★' + ${review.getScore()}" class="orange score-right"></p>
+                </div>
+                <p th:text="${review.getFormattedCallTime()}"></p>
+                <p th:text="${review.getFormattedAppointmentDate()}"></p>
+            </div>
+            <div class="review-right">
+                <div th:if="!${review.getDescription().isEmpty()}">
+                    <p class="title">Комментарий:</p>
+                    <p th:text="${review.getDescription()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}">
+<head>
+    <meta charset="UTF-8">
+    <title>Активные записи</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+<body>
+<div layout:fragment="content">
+    <h1 class="head-title" th:if="${date != null && !appointments.isEmpty()}" th:text="'Активные записи' + ${date}"></h1>
+    <input id="doctorId" th:value="${doctor.getId()}" hidden="">
+    <div class="buttons-content">
+        <div th:replace="~{fragments/account :: doctorButtons}"></div>
+        <div class="account-content">
+            <div class="content-filter">
+                <div class="appointments-block">
+                    <h2 th:if="${appointments.isEmpty()}" class="center">Записей нет</h2>
+                    <div class="block appointment-block" th:each="appointment : ${appointments}">
+                        <table class="appointment-table">
+                            <tr>
+                                <td><p>Пациент:</p></td>
+                                <td th:text="${appointment.getPatient().getFullname()}"></td>
+                            </tr>
+                            <tr>
+                                <td><p>Начало:</p></td>
+                                <td th:text="${appointment.getFormattedStartDateTime()}"></td>
+                            </tr>
+                            <tr>
+                                <td><p>Услуги:</p></td>
+                                <td th:text="${appointment.getFormattedTreatments()}"></td>
+                            </tr>
+                            <tr th:if="${appointment.getComment() != null && !appointment.getComment().isBlank()}">
+                                <td><p>Комментарий:</p></td>
+                                <td th:text="${appointment.getComment()}"></td>
+                            </tr>
+                            <tr>
+                                <td><p>Стоимость:</p></td>
+                                <td th:text="${appointment.getPrice()} + ' рублей'"></td>
+                            </tr>
+                        </table>
+                        <div class="buttons-block">
+                            <a class="button"
+                               th:href="@{/appointments/{id}(id=${appointment.id})}">Подробнее</a>
+                            <a class="button"
+                               th:href="@{/appointments/{id}/transfer(id=${appointment.id})}">Перенести</a>
+                            <a class="button"
+                               th:href="@{/appointments/{id}/diagnosis(id=${appointment.id})}">Диагноз</a>
+                            <a class="button red-button"
+                               th:href="@{/appointments/{id}/cancel(id=${appointment.id})}">Отменить</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="block form filter date-filter">
+                    <div id="datepicker"></div>
+                    <input name="date" type="hidden" id="datepicker_value">
+                    <div class="center">
+                        <input class="button" type="submit" value="Применить">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script th:src="@{/js/date-localization.js}"></script>
+    <script th:src="@{/js/date-doctor-active.js}"></script>
+</div>
+</body>
+</html>

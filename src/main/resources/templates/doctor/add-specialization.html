@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Врач</title>
+</head>
+<div layout:fragment="content" class="narrow-block">
+  <form class="block form" th:method="post" th:action="@{/doctors/{id}/addSpec(id=${doctorId})}">
+    <label for="spec">Специальность врача</label>
+    <select name="spec" id="spec">
+      <option th:each="specialization : ${specializations}"
+              th:text="${specialization.getTitle()}"
+              th:value="${specialization.getId()}">
+      </option>
+    </select>
+    <div class="buttons-block-around">
+      <a th:href="@{/doctors/{doctorId}/manage/admin(doctorId=${doctorId})}" class="button">Назад</a>
+      <input type="submit" class="button" value="Добавить">
+    </div>
+  </form>
+</div>
+</html>

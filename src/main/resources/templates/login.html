@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h1 class="head-title">Войти в систему</h1>
+  <div class="content">
+      <div class="narrow-block">
+          <form class="form block"
+              th:action="@{/login}"
+              th:method="post">
+              <p class="red center" th:if="${param.error}">
+                  Invalid username and password.
+              </p>
+              <p class="green center" th:if="${param.logout}">
+                  You have been logged out.
+              </p>
+              <p class="green center" th:if="${message}" th:text="${message}"></p>
+            <label for="username">Логин</label>
+            <input type="text" id="username" name="username" placeholder="Логин" required>
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" placeholder="Пароль" required>
+            <div class="buttons-block-around">
+              <a type="button" class="button" th:href="@{/signup}">Регистрация</a>
+              <input type="submit" value="Вход" class="button">
+            </div>
+          </form>
+      </div>
+  </div>
+</div>
+</body>
+</html>

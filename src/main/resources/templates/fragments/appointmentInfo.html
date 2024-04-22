@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="appointment-table" th:fragment="appointmentInfo">
+  <tr>
+    <td><p>Врач:</p></td>
+    <td><p th:text="${appointment.getDoctor().getFullname()}"></p></td>
+  </tr>
+  <tr>
+    <td><p>Пациент:</p></td>
+    <td th:text="${appointment.getPatient().getFullname()}"></td>
+  </tr>
+  <tr>
+    <td><p>Услуги:</p></td>
+    <td th:text="${appointment.getFormattedTreatments()}"></td>
+  </tr>
+  <tr>
+    <td><p>Начало:</p></td>
+    <td><p th:text="${appointment.getFormattedStartDateTime()}"></p></td>
+  </tr>
+  <tr>
+    <td><p>Конец:</p></td>
+    <td><p th:text="${appointment.getFormattedEndDateTime()}"></p></td>
+  </tr>
+  <tr>
+    <td><p>Цена:</p></td>
+    <td><p th:text="${appointment.getPrice()} + ' рублей'"></p>
+  </tr>
+  <tr>
+    <td><p>Статус:</p></td>
+    <td><p th:text="${appointment.getStatus().getStatus()}"></p>
+  </tr>
+  <tr th:if="${appointment.getDiagnosis() != null && !appointment.getDiagnosis().isBlank()}">
+    <td><p>Диагноз:</p></td>
+    <td><p th:text="${appointment.getDiagnosis()}"></p>
+  </tr>
+  <tr th:if="${appointment.getComment() != null && !appointment.getComment().isBlank()}">
+    <td><p>Комментарий:</p></td>
+    <td><p th:text="${appointment.getComment()}"></p>
+  </tr>
+</table>
+</body>
+</html>

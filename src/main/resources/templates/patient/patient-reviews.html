@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Отзывы</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+    <div th:replace="~{fragments/account :: patientButtons}"></div>
+    <div class="account-content">
+      <h2 class="center" th:if="${patient.getReviews().isEmpty()}">Отзывов нет</h2>
+      <div th:each="review : ${patient.getReviews()}" class="block review-block">
+        <div class="review-left">
+          <p class="title" th:if="${review.getReviewStatus().getStatus() == 'В модерации'}">Отзыв еще не опубликован!</p>
+          <p th:text="${patient.getFullname()}" class="title"></p>
+          <p th:text="${review.getFormattedCallTime()}"></p>
+          <p th:text="${review.getFormattedAppointmentDate()}"></p>
+        </div>
+        <div class="review-right">
+          <a th:href="@{/doctors/{id}(id=${review.getDoctor().getId()})}" th:text="${review.getDoctor().getFullname()}" class="title link"></a>
+          <div class="score-block">
+            <p class="title">Оценка: </p>
+            <p th:text="'★' + ${review.getScore()}" class="orange score-right"></p>
+          </div>
+          <div th:if="!${review.getDescription().isBlank()}">
+            <p>Комментарий:</p>
+            <p th:text="${review.getDescription()}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

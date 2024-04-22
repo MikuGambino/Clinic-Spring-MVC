@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список врачей</title>
+</head>
+<body>
+    <div layout:fragment="content" class="content">
+        <div class="block">
+            <div th:if="${specialization}" class="spec-block">
+                <p class="title" th:text="${specialization.title}"></p>
+                <p th:if="${!specialization.getDescription().isEmpty()}" th:text="${specialization.getDescription()}"></p>
+                <p th:text="'Услуги: ' + ${specialization.getFormattedTreatments()}"></p>
+            </div>
+            <div th:if="!${specialization}" class="spec-block">
+                <p class="title">Все врачи</p>
+            </div>
+        </div>
+        <div th:each="doctor : ${doctors}" class="doc-info-block block">
+            <img class="small-img" th:src="'/img/' + ${doctor.getImage()}">
+            <div class="block-right space-between">
+                <div>
+                    <a th:text="${doctor.getFullname()}" th:href="@{/doctors/{id}(id=${doctor.id})}" class="title link"></a>
+                    <div th:if="${doctor.getNumberOfReview()} > 0" class="score-block">
+                        <p class="orange score-left" th:text="'★' + ${doctor.getRating()}"></p>
+                        <a th:href="@{/doctors/{id}(id=${doctor.id})}" th:text="${doctor.getNumberOfReview()} + ' отзыв(а)'" class="link"></a>
+                    </div>
+                    <p th:text="${doctor.getFormattedSpecializations()}"></p>
+                    <p th:text="${doctor.getDescription()}"></p>
+                </div>
+                <div>
+                    <a th:href="@{/appointments/doctor/{id}(id=${doctor.id})}" class="button">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

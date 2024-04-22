@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Отзывы</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="buttons-content">
+    <div th:replace="~{fragments/account :: adminButtons}"></div>
+    <div class="account-content">
+      <h2 class="center" th:if="${reviews.isEmpty()}">Отзывов нет</h2>
+      <div th:each="review : ${reviews}" class="block review-block">
+        <div class="review-left">
+          <p th:text="${review.getPatient().getFullname()}" class="title"></p>
+          <p th:text="${review.getFormattedCallTime()}"></p>
+          <p th:text="${review.getFormattedAppointmentDate()}"></p>
+        </div>
+        <div class="review-right">
+          <p th:text="'Врач: ' + ${review.getDoctor().getFullname()}" class="title"></p>
+          <div class="score-block">
+            <p class="title">Оценка: </p>
+            <p th:text="'★' + ${review.getScore()}" class="orange score-right"></p>
+          </div>
+          <div th:if="!${review.getDescription().isBlank()}">
+            <p>Комментарий:</p>
+            <p th:text="${review.getDescription()}"></p>
+          </div>
+          <div class="buttons-block-row buttons-block">
+            <form th:method="post" th:action="@{/reviews/{id}/delete(id=${review.getId()})}">
+              <input type="submit" class="red-button button" th:value="Удалить">
+            </form>
+            <form th:method="post" th:action="@{/reviews/{id}/accept(id=${review.getId()})}">
+              <input type="submit" class="button" th:value="Принять">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

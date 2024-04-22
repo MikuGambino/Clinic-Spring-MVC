@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{narrow}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Диагноз</title>
+</head>
+    <body>
+        <div layout:fragment="content" class="content">
+            <div class="block">
+                <table th:replace="~{fragments/appointmentInfo :: appointmentInfo}"></table>
+            </div>
+            <form class="block form"
+                  method="post"
+                  th:action="@{/appointments/{id}/diagnosis(id=${appointment.getId()})}">
+                <label for="diagnosis">Введите диагноз:</label>
+                <textarea id="diagnosis" name="diagnosis" required></textarea>
+                <input type="submit" value="Отправить" class="button center">
+            </form>
+        </div>
+    </body>
+</html>

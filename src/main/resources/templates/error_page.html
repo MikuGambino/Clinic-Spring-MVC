@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="content">
+        <div class="narrow-block error">
+            <h1 class="center" th:text="${code}"></h1>
+            <h2 class="center" th:if="${description != null}" th:text="${description}"></h2>
+            <h2 class="center" th:if="${description == null}">Ooooops. Что-то пошло не так</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>

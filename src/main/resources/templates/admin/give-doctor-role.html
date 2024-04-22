@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}">
+<head>
+    <meta charset="UTF-8">
+    <title>Роль доктора</title>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+    <div class="narrow-block">
+        <form class="form block"
+              method="post"
+              th:action="@{/users/{id}/addDoctorRole(id=${doctorId})}"
+              enctype="multipart/form-data"
+              th:object="${doctor}">
+            <label for="name">Имя:</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Имя">
+            <label for="surname">Фамилия:</label>
+            <input type="text" th:field="*{surname}" id="surname" placeholder="Фамилия">
+            <label for="patronymic">Отчество:</label>
+            <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Отчество">
+            <label for="description">Описание:</label>
+            <textarea id="description" name="description" th:field="*{description}"></textarea>
+            <label for="image">Изображение профиля:</label>
+            <input accept="image/*" id="image" name="image" type="file">
+            <label for="isEnabled">Статус врача:</label>
+            <select th:field="*{isEnabled}" id="isEnabled">
+                <option th:value="1">Активен</option>
+                <option th:value="0">Не активен</option>
+            </select>
+            <div class="buttons-block-around">
+                <a th:href="@{/users/{id}(id=${doctorId})}" class="button">Назад</a>
+                <input class="button" type="submit" value="Выдать роль">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

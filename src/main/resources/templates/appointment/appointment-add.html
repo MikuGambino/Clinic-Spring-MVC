@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{narrow}" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись к врачу</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div layout:fragment="content" class="content content-appointment">
+    <input hidden="" id="doctorId" th:value="${doctor.getId()}">
+    <div class="block doc-info-block">
+        <img class="small-img" th:src="'/img/' + ${doctor.getImage()}">
+        <div class="block-right">
+            <p class="title" th:text="${doctor.getFullname()}"></p>
+            <p th:text="${doctor.getFormattedSpecializations()}"></p>
+            <p th:text="${doctor.getDescription()}"></p>
+        </div>
+    </div>
+        <form class="form"
+              method="post"
+              onsubmit="return validateForm();"
+              th:object="${appointment}"
+              th:action="@{/appointments/doctor/{id}(id=${doctor.id})}">
+            <div class="block">
+                <div class="spec-services" th:each="specialization : ${doctor.getSpecializations()}">
+                    <div class="specialization-choose">
+                        <p>Выберите специальность:</p>
+                        <input name="spec" required="" th:attr="onclick='showServices(this.value)'"
+                               th:id="'spec-' + ${specialization.getId()}" th:value="${specialization.getId()}"
+                               type="radio">
+                        <label th:attr="for='spec-' + ${specialization.getId()}"
+                               th:text="${specialization.getTitle()}"></label>
+                    </div>
+                    <div class="services-block block-right">
+                        <p class="services" hidden="hidden">Выберите услугу:</p>
+                        <p class="red" hidden="hidden" id="chooseTreatment">Выберите услугу!</p>
+                        <div class="treatments-block">
+                            <div hidden="hidden" th:each="treatment, treatmentStats : ${specialization.getTreatments()}"
+                                 th:class="'serviceSpec-' + ${specialization.getId()}">
+                                <select hidden th:field="*{treatments[__${treatmentStats.index}__].treatmentId}">
+                                    <option th:value="${treatment.id}"></option>
+                                </select>
+                                <input name="treatment"
+                                       th:id="'service-' + ${treatment.getId()}"
+                                       th:class="'service-' + ${treatment.getId()}"
+                                       th:field="*{treatments[__${treatmentStats.index}__]}"
+                                       th:value="${treatment.getId()}" type="checkbox">
+                                <label th:attr="for='service-' + ${treatment.getId()}"
+                                       th:text="${treatment.getTitle()}">
+                                </label>
+                                <p th:if="${treatment.hasDiscount(hasBeneficiary)}"
+                                   th:text="'Скидка: ' + ${treatment.getMaxDiscount(hasBeneficiary)} + '%'"></p>
+                                <div class="price" th:if="${treatment.hasDiscount(hasBeneficiary)}">
+                                    <p th:text="'Цена: ' + ${treatment.getPriceWithMaxDiscount(hasBeneficiary)} + '&nbsp;'"></p>
+                                    <p><s th:text=" ${treatment.getPrice()}"></s>&nbsp;рублей.&nbsp;</p>
+                                </div>
+                                <div class="price" th:unless="${treatment.hasDiscount(hasBeneficiary)}">
+                                    <p th:text="'Цена: ' + ${treatment.getPrice()} + ' рублей.&nbsp;'"></p>
+                                </div>
+                                <p th:if="${!treatment.getDescription().isBlank()}" th:text="${treatment.getDescription()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block margin-top">
+                <div class="choose-date-block">
+                    <div>
+                        <div id="datepicker"></div>
+                        <input class="limpid" name="scheduleId" required type="radio">
+                        <span th:if="${#fields.hasErrors('scheduleId')}" class="red" th:errors="*{scheduleId}"></span>
+                    </div>
+                    <div class="block-right">
+                        <p>Доступное время:</p>
+                        <div class="times"></div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <label for="comment">Комментарий:</label>
+                    <textarea id="comment" name="comment" placeholder="Оставьте комментарий врачу (не обязательно)" th:field="*{comment}"></textarea>
+                    <span th:if="${#fields.hasErrors('comment')}" class="red" th:errors="*{comment}"></span>
+                </div>
+                <div class="buttons-block-around">
+                    <a class="button" th:href="@{/doctors/{id}(id=${doctor.getId()})}">Назад</a>
+                    <input class="button" value="Записаться" type="submit">
+                </div>
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <script th:src="@{/js/appointment.js}"></script>
+        <script th:src="@{/js/date-user.js}"></script>
+        <script th:src="@{/js/date-localization.js}"></script>
+    </div>
+</body>
+</html>

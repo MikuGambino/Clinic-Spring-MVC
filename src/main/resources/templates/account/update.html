@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование профиля</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h1 class="head-title">Редактирование профиля</h1>
+  <div class="narrow-block">
+    <form class="block form" th:action="@{/account/update}" th:method="post" th:object="${user}">
+      <label for="name">Имя:</label>
+      <input type="text" th:field="*{name}" id="name" placeholder="Имя">
+      <label for="surname">Фамилия:</label>
+      <input type="text" th:field="*{surname}" id="surname" placeholder="Фамилия">
+      <label for="patronymic">Отчество:</label>
+      <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Отчество">
+      <label for="birthday">День рождения:</label>
+      <input name="birthday" type="date" id="birthday" th:value="${user.getFormattedBirthday()}">
+      <label for="gender">Пол:</label>
+      <select id="gender" th:field="*{gender}">
+        <option th:value="'Мужской'" th:text="Мужской"></option>
+        <option th:value="'Женский'" th:text="Женский"></option>
+      </select>
+      <div class="buttons-block-around">
+        <a type="button" class="button" th:href="@{/account}">Назад</a>
+        <input type="submit" value="Сохранить" class="button">
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

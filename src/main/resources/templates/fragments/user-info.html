@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:fragment="userInfo" style="width: 500px">
+    <tr>
+        <td><p>Имя:</p></td>
+        <td><p th:text="${user.getFullname()}"></p></td>
+    </tr>
+    <tr th:if="${user.getBirthday() != null}">
+        <td><p>День рождения:</p></td>
+        <td th:text="${user.getFormattedBirthdayRU()}"></td>
+    </tr>
+    <tr>
+        <td><p>Пол:</p></td>
+        <td th:text="${user.getGender()}"></td>
+    </tr>
+</table>
+</body>
+</html>

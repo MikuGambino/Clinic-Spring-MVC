@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{narrow}">
+<head>
+    <meta charset="UTF-8">
+    <title>Перенос записи</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div layout:fragment="content" class="content content-appointment">
+    <input hidden="" id="doctorId" th:value="${doctor.getId()}">
+    <div class="block">
+        <table th:replace="~{fragments/appointmentInfo :: appointmentInfo}"></table>
+    </div>
+    <form class="block form" method="post" th:action="@{/appointments/{id}/transfer(id=${appointment.getId()})}">
+        <div class="choose-date-block">
+            <input class="limpid" name="scheduleId" required type="radio">
+            <div>
+                <div id="datepicker"></div>
+            </div>
+            <div class="block-right">
+                <p>Доступное время:</p>
+                <div class="times"></div>
+            </div>
+        </div>
+        <label for="reject-reason">Введите причину переноса:</label>
+        <textarea id="reject-reason" name="reason" required></textarea>
+        <div class="buttons-block-around">
+            <a class="button" th:href="@{/appointments/{id}(id=${appointment.getId()})}">Назад</a>
+            <input type="submit" value="Перенести" class="button">
+        </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script th:src="@{/js/appointment.js}"></script>
+    <script th:src="@{/js/date-user.js}"></script>
+    <script th:src="@{/js/date-localization.js}"></script>
+</div>
+</body>
+</html>
