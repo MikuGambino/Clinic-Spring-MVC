@@ -1,6 +1,7 @@
 package com.mikegambino.clinic.model;
 
 import com.mikegambino.clinic.model.dto.forms.SignUpForm;
+import com.mikegambino.clinic.model.roles.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.mikegambino.clinic.model.roles.Role;
 
 @Data
 @Entity(name = "users")

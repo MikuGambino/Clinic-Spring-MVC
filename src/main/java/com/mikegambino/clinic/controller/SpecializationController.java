@@ -2,8 +2,6 @@ package com.mikegambino.clinic.controller;
 
 import com.mikegambino.clinic.model.Specialization;
 import com.mikegambino.clinic.model.dto.SpecializationRequest;
-import com.mikegambino.clinic.security.CurrentUser;
-import com.mikegambino.clinic.security.UserPrincipal;
 import com.mikegambino.clinic.service.SpecializationService;
 import com.mikegambino.clinic.service.TreatmentService;
 import jakarta.validation.Valid;

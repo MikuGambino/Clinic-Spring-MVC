@@ -9,8 +9,6 @@ import com.mikegambino.clinic.model.dto.ScheduleDTO;
 import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.repository.DoctorRepository;
 import com.mikegambino.clinic.repository.ScheduleRepository;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
 import com.mikegambino.clinic.security.UserPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class ScheduleService {

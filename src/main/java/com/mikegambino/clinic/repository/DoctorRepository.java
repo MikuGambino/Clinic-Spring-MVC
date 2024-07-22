@@ -1,17 +1,11 @@
 package com.mikegambino.clinic.repository;
 
-import com.mikegambino.clinic.model.Appointment;
 import com.mikegambino.clinic.model.Doctor;
-import com.mikegambino.clinic.model.Specialization;
-import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface DoctorRepository extends ListCrudRepository<Doctor, Integer> {
 

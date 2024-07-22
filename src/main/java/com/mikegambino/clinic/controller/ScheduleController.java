@@ -1,7 +1,7 @@
 package com.mikegambino.clinic.controller;
 
-import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.model.dto.ScheduleDTO;
+import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.security.CurrentUser;
 import com.mikegambino.clinic.security.UserPrincipal;
 import com.mikegambino.clinic.service.AppointmentService;

@@ -15,21 +15,20 @@ import com.mikegambino.clinic.repository.PatientRepository;
 import com.mikegambino.clinic.repository.RoleRepository;
 import com.mikegambino.clinic.repository.UserRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.Doc;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class UserService {

@@ -2,7 +2,6 @@ package com.mikegambino.clinic.repository;
 
 
 import com.mikegambino.clinic.model.Review;
-import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.model.enums.ReviewStatus;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;

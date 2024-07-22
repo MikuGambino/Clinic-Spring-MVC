@@ -1,8 +1,8 @@
 package com.mikegambino.clinic.controller;
 
 import com.mikegambino.clinic.model.Appointment;
-import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.model.dto.AppointmentRequest;
+import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.security.CurrentUser;
 import com.mikegambino.clinic.security.UserPrincipal;
 import com.mikegambino.clinic.service.AppointmentService;
@@ -11,7 +11,6 @@ import com.mikegambino.clinic.service.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

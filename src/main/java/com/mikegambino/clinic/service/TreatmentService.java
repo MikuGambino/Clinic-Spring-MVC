@@ -6,12 +6,11 @@ import com.mikegambino.clinic.model.Treatment;
 import com.mikegambino.clinic.model.dto.TreatmentRequest;
 import com.mikegambino.clinic.repository.SpecializationRepository;
 import com.mikegambino.clinic.repository.TreatmentRepository;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
-import com.mikegambino.clinic.security.UserPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class TreatmentService {

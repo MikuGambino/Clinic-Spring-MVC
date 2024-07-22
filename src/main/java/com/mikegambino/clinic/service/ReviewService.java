@@ -3,16 +3,17 @@ package com.mikegambino.clinic.service;
 import com.mikegambino.clinic.exception.AccessDeniedException;
 import com.mikegambino.clinic.exception.BadRequestException;
 import com.mikegambino.clinic.exception.ResourceNotFoundException;
-import com.mikegambino.clinic.model.*;
-import com.mikegambino.clinic.model.enums.ReviewStatus;
+import com.mikegambino.clinic.model.Appointment;
+import com.mikegambino.clinic.model.Doctor;
+import com.mikegambino.clinic.model.Patient;
+import com.mikegambino.clinic.model.Review;
 import com.mikegambino.clinic.model.dto.forms.ReviewForm;
+import com.mikegambino.clinic.model.enums.ReviewStatus;
 import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.repository.AppointmentRepository;
 import com.mikegambino.clinic.repository.DoctorRepository;
 import com.mikegambino.clinic.repository.PatientRepository;
 import com.mikegambino.clinic.repository.ReviewRepository;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
 import com.mikegambino.clinic.security.UserPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class ReviewService {

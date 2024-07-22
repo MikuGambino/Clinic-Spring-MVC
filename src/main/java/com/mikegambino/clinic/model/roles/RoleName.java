@@ -2,7 +2,9 @@ package com.mikegambino.clinic.model.roles;
 
 import com.mikegambino.clinic.exception.ResourceNotFoundException;
 import lombok.Getter;
-import static com.mikegambino.clinic.util.AppConstants.*;
+
+import static com.mikegambino.clinic.util.AppConstants.ROLE;
+import static com.mikegambino.clinic.util.AppConstants.TITLE;
 
 @Getter
 public enum RoleName {

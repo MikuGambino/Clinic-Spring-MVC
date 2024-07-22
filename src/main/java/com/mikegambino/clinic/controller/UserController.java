@@ -1,18 +1,15 @@
 package com.mikegambino.clinic.controller;
 
-import com.mikegambino.clinic.model.Doctor;
 import com.mikegambino.clinic.model.User;
 import com.mikegambino.clinic.model.dto.DoctorRequest;
 import com.mikegambino.clinic.model.dto.DoctorResponse;
 import com.mikegambino.clinic.model.roles.Role;
 import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.service.DoctorService;
-import com.mikegambino.clinic.service.ImageService;
 import com.mikegambino.clinic.service.PatientService;
 import com.mikegambino.clinic.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

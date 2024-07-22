@@ -6,17 +6,14 @@ import com.mikegambino.clinic.model.Doctor;
 import com.mikegambino.clinic.model.Review;
 import com.mikegambino.clinic.model.Specialization;
 import com.mikegambino.clinic.model.User;
-import com.mikegambino.clinic.model.enums.ReviewStatus;
 import com.mikegambino.clinic.model.dto.DoctorRequest;
 import com.mikegambino.clinic.model.dto.DoctorResponse;
-import com.mikegambino.clinic.model.roles.Role;
+import com.mikegambino.clinic.model.enums.ReviewStatus;
 import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.repository.DoctorRepository;
 import com.mikegambino.clinic.repository.ReviewRepository;
 import com.mikegambino.clinic.repository.SpecializationRepository;
 import com.mikegambino.clinic.repository.UserRepository;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
 import com.mikegambino.clinic.security.UserPrincipal;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class DoctorService {

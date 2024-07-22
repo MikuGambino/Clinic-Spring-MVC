@@ -1,15 +1,10 @@
 package com.mikegambino.clinic.model.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mikegambino.clinic.model.Doctor;
 import com.mikegambino.clinic.model.Schedule;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data

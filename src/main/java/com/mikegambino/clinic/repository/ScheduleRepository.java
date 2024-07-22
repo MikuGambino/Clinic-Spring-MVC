@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ScheduleRepository extends ListCrudRepository<Schedule, Integer> {

@@ -3,9 +3,7 @@ package com.mikegambino.clinic.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data

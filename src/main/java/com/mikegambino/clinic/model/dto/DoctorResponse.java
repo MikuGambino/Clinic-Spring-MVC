@@ -2,14 +2,12 @@ package com.mikegambino.clinic.model.dto;
 
 import com.mikegambino.clinic.model.Doctor;
 import com.mikegambino.clinic.model.Specialization;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.IntSummaryStatistics;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data

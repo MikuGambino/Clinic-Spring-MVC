@@ -4,13 +4,11 @@ import com.mikegambino.clinic.exception.AccessDeniedException;
 import com.mikegambino.clinic.exception.BadRequestException;
 import com.mikegambino.clinic.exception.ResourceNotFoundException;
 import com.mikegambino.clinic.model.*;
-import com.mikegambino.clinic.model.CancelledAppointment;
+import com.mikegambino.clinic.model.dto.AppointmentRequest;
 import com.mikegambino.clinic.model.enums.AppointmentStatus;
 import com.mikegambino.clinic.model.roles.RoleName;
-import com.mikegambino.clinic.model.dto.AppointmentRequest;
 import com.mikegambino.clinic.repository.*;
 import com.mikegambino.clinic.security.UserPrincipal;
-import static com.mikegambino.clinic.util.AppConstants.*;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
 public class AppointmentService {

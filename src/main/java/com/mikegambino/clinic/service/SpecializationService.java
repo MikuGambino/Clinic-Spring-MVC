@@ -4,11 +4,12 @@ import com.mikegambino.clinic.exception.ResourceNotFoundException;
 import com.mikegambino.clinic.model.Specialization;
 import com.mikegambino.clinic.model.dto.SpecializationRequest;
 import com.mikegambino.clinic.repository.SpecializationRepository;
-import static com.mikegambino.clinic.util.AppConstants.*;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.mikegambino.clinic.util.AppConstants.ID;
+import static com.mikegambino.clinic.util.AppConstants.SPECIALIZATION;
 
 @Service
 public class SpecializationService {

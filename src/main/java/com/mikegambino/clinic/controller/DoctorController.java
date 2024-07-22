@@ -2,9 +2,9 @@ package com.mikegambino.clinic.controller;
 
 import com.mikegambino.clinic.model.Review;
 import com.mikegambino.clinic.model.Specialization;
-import com.mikegambino.clinic.model.dto.forms.ReviewForm;
 import com.mikegambino.clinic.model.dto.DoctorRequest;
 import com.mikegambino.clinic.model.dto.DoctorResponse;
+import com.mikegambino.clinic.model.dto.forms.ReviewForm;
 import com.mikegambino.clinic.security.CurrentUser;
 import com.mikegambino.clinic.security.UserPrincipal;
 import com.mikegambino.clinic.service.DoctorService;
@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @Controller
