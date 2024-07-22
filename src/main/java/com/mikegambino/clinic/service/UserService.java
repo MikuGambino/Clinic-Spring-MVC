@@ -15,6 +15,7 @@ import com.mikegambino.clinic.repository.PatientRepository;
 import com.mikegambino.clinic.repository.RoleRepository;
 import com.mikegambino.clinic.repository.UserRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ import java.util.logging.Logger;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final DoctorRepository doctorRepository;
@@ -38,18 +40,6 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final ImageService imageService;
-
-    public UserService(UserRepository userRepository, DoctorRepository doctorRepository,
-                       PatientRepository patientRepository, RoleRepository roleRepository,
-                       PasswordEncoder passwordEncoder, ImageService imageService) {
-        this.userRepository = userRepository;
-        this.doctorRepository = doctorRepository;
-        this.patientRepository = patientRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.imageService = imageService;
-    }
-
 
     public User getByUsername(String username){
         return userRepository.findByUsername(username);

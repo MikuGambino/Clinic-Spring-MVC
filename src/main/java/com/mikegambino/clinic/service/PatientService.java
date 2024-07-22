@@ -4,18 +4,16 @@ import com.mikegambino.clinic.exception.ResourceNotFoundException;
 import com.mikegambino.clinic.model.Patient;
 import com.mikegambino.clinic.repository.PatientRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import static com.mikegambino.clinic.util.AppConstants.ID;
 import static com.mikegambino.clinic.util.AppConstants.PATIENT;
 
 @Service
+@RequiredArgsConstructor
 public class PatientService {
     private final PatientRepository patientRepository;
-
-    public PatientService(PatientRepository patientRepository) {
-        this.patientRepository = patientRepository;
-    }
 
     public Patient getPatient(UserPrincipal currentUser) {
         Patient patient = patientRepository.findById(currentUser.getId())

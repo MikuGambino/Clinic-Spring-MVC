@@ -3,6 +3,7 @@ package com.mikegambino.clinic.controller;
 import com.mikegambino.clinic.model.dto.forms.SignUpForm;
 import com.mikegambino.clinic.service.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.logging.Logger;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/login")
     public String login(Model model, @RequestParam(name = "success", required = false) boolean success) {

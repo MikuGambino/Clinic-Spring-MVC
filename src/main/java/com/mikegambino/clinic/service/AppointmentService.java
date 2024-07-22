@@ -10,6 +10,7 @@ import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.repository.*;
 import com.mikegambino.clinic.security.UserPrincipal;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final DoctorRepository doctorRepository;
@@ -33,16 +35,6 @@ public class AppointmentService {
     private final ScheduleRepository scheduleRepository;
     private final PatientRepository patientRepository;
     private final CancelledAppointmentRepository cancelledAppointmentRepository;
-
-    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository,
-                              TreatmentRepository treatmentRepository, ScheduleRepository scheduleRepository, PatientRepository patientRepository, CancelledAppointmentRepository cancelledAppointmentRepository) {
-        this.appointmentRepository = appointmentRepository;
-        this.doctorRepository = doctorRepository;
-        this.treatmentRepository = treatmentRepository;
-        this.scheduleRepository = scheduleRepository;
-        this.patientRepository = patientRepository;
-        this.cancelledAppointmentRepository = cancelledAppointmentRepository;
-    }
 
     @Transactional
     public int addAppointment(int doctorId, AppointmentRequest appointmentRequest, UserPrincipal currentUser) {

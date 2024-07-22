@@ -9,6 +9,7 @@ import com.mikegambino.clinic.service.AppointmentService;
 import com.mikegambino.clinic.service.DoctorService;
 import com.mikegambino.clinic.service.PatientService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,17 +21,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/appointments")
 public class AppointmentController {
     private final PatientService patientService;
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
-
-    public AppointmentController(PatientService patientService, DoctorService doctorService, AppointmentService appointmentService) {
-        this.patientService = patientService;
-        this.doctorService = doctorService;
-        this.appointmentService = appointmentService;
-    }
 
     @GetMapping("/doctor/{id}")
     @PreAuthorize("hasRole('PATIENT')")

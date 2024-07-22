@@ -6,6 +6,7 @@ import com.mikegambino.clinic.security.CurrentUser;
 import com.mikegambino.clinic.security.UserPrincipal;
 import com.mikegambino.clinic.service.AppointmentService;
 import com.mikegambino.clinic.service.ScheduleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,15 +17,11 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/schedule")
 public class ScheduleController {
     private final ScheduleService scheduleService;
     private final AppointmentService appointmentService;
-
-    public ScheduleController(ScheduleService scheduleService, AppointmentService appointmentService) {
-        this.scheduleService = scheduleService;
-        this.appointmentService = appointmentService;
-    }
 
     @GetMapping("/{date}/doctor/{doctorId}")
     public ResponseEntity<List<ScheduleDTO>> getSchedules(@PathVariable LocalDate date,

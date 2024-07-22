@@ -9,6 +9,7 @@ import com.mikegambino.clinic.service.DoctorService;
 import com.mikegambino.clinic.service.PatientService;
 import com.mikegambino.clinic.service.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,18 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/users")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     private final UserService userService;
     private final DoctorService doctorService;
     private final PatientService patientService;
-
-    public UserController(UserService userService, DoctorService doctorService, PatientService patientService) {
-        this.userService = userService;
-        this.doctorService = doctorService;
-        this.patientService = patientService;
-    }
 
     @GetMapping
     public String users(@RequestParam(value = "role", required = false) String role, Model model){

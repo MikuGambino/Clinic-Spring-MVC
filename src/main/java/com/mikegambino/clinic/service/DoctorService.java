@@ -16,6 +16,7 @@ import com.mikegambino.clinic.repository.SpecializationRepository;
 import com.mikegambino.clinic.repository.UserRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,21 +27,13 @@ import java.util.List;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class DoctorService {
     private final SpecializationRepository specializationRepository;
     private final DoctorRepository doctorRepository;
     private final ImageService imageService;
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
-
-    public DoctorService(SpecializationRepository specializationRepository, DoctorRepository doctorRepository,
-                         ImageService imageService, UserRepository userRepository, ReviewRepository reviewRepository) {
-        this.specializationRepository = specializationRepository;
-        this.doctorRepository = doctorRepository;
-        this.imageService = imageService;
-        this.userRepository = userRepository;
-        this.reviewRepository = reviewRepository;
-    }
 
     public List<DoctorResponse> getDoctorsBySpecialization(int specId) {
         Specialization specialization = specializationRepository.findById(specId)

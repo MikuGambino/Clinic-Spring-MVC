@@ -5,6 +5,7 @@ import com.mikegambino.clinic.model.dto.SpecializationRequest;
 import com.mikegambino.clinic.service.SpecializationService;
 import com.mikegambino.clinic.service.TreatmentService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/specializations")
+@RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ADMIN')")
 public class SpecializationController {
     private final SpecializationService specializationService;
     private final TreatmentService treatmentService;
-    public SpecializationController(SpecializationService specializationService, TreatmentService treatmentService) {
-        this.specializationService = specializationService;
-        this.treatmentService = treatmentService;
-    }
 
     @GetMapping("/admin")
     public String specializationsAdmin(Model model) {

@@ -15,6 +15,7 @@ import com.mikegambino.clinic.repository.DoctorRepository;
 import com.mikegambino.clinic.repository.PatientRepository;
 import com.mikegambino.clinic.repository.ReviewRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +26,12 @@ import java.util.Optional;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final PatientRepository patientRepository;
     private final AppointmentRepository appointmentRepository;
     private final DoctorRepository doctorRepository;
-
-    public ReviewService(ReviewRepository reviewRepository, PatientRepository patientRepository,
-                         AppointmentRepository appointmentRepository, DoctorRepository doctorRepository) {
-        this.reviewRepository = reviewRepository;
-        this.patientRepository = patientRepository;
-        this.appointmentRepository = appointmentRepository;
-        this.doctorRepository = doctorRepository;
-    }
-
     public List<Review> getAcceptedReviewsByDoctor(int doctorId) {
         return reviewRepository.findReviewsByDoctorAndStatus(doctorId, ReviewStatus.ACCEPTED);
     }

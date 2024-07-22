@@ -10,6 +10,7 @@ import com.mikegambino.clinic.model.roles.RoleName;
 import com.mikegambino.clinic.repository.DoctorRepository;
 import com.mikegambino.clinic.repository.ScheduleRepository;
 import com.mikegambino.clinic.security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +22,10 @@ import java.util.List;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final DoctorRepository doctorRepository;
-
-    public ScheduleService(ScheduleRepository scheduleRepository, DoctorRepository doctorRepository) {
-        this.scheduleRepository = scheduleRepository;
-        this.doctorRepository = doctorRepository;
-    }
 
     public List<ScheduleDTO> getDoctorScheduleDTOByDate(LocalDate date, int doctorId) {
         List<Schedule> schedules = scheduleRepository.findDoctorScheduleByDate(date, doctorId);

@@ -11,6 +11,7 @@ import com.mikegambino.clinic.service.DoctorService;
 import com.mikegambino.clinic.service.ReviewService;
 import com.mikegambino.clinic.service.SpecializationService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,18 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/doctors")
 public class DoctorController {
     private final DoctorService doctorService;
     private final SpecializationService specializationService;
     private final ReviewService reviewService;
-
-    public DoctorController(DoctorService doctorService, SpecializationService specializationService,
-                            ReviewService reviewService) {
-        this.doctorService = doctorService;
-        this.specializationService = specializationService;
-        this.reviewService = reviewService;
-    }
 
     @GetMapping
     public String doctors(@RequestParam(value = "specId", required = false) Integer specId, Model model) {

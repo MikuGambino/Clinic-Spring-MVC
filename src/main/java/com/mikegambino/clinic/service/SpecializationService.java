@@ -4,6 +4,7 @@ import com.mikegambino.clinic.exception.ResourceNotFoundException;
 import com.mikegambino.clinic.model.Specialization;
 import com.mikegambino.clinic.model.dto.SpecializationRequest;
 import com.mikegambino.clinic.repository.SpecializationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,9 @@ import static com.mikegambino.clinic.util.AppConstants.ID;
 import static com.mikegambino.clinic.util.AppConstants.SPECIALIZATION;
 
 @Service
+@RequiredArgsConstructor
 public class SpecializationService {
     private final SpecializationRepository specializationRepository;
-
-    public SpecializationService(SpecializationRepository specializationRepository) {
-        this.specializationRepository = specializationRepository;
-    }
 
     public List<Specialization> getAllSpecializations() {
         return specializationRepository.findAll();

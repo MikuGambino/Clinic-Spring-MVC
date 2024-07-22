@@ -6,6 +6,7 @@ import com.mikegambino.clinic.model.Treatment;
 import com.mikegambino.clinic.model.dto.TreatmentRequest;
 import com.mikegambino.clinic.repository.SpecializationRepository;
 import com.mikegambino.clinic.repository.TreatmentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +14,10 @@ import java.util.List;
 import static com.mikegambino.clinic.util.AppConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class TreatmentService {
     private final TreatmentRepository treatmentRepository;
     private final SpecializationRepository specializationRepository;
-
-    public TreatmentService(TreatmentRepository treatmentRepository, SpecializationRepository specializationRepository) {
-        this.treatmentRepository = treatmentRepository;
-        this.specializationRepository = specializationRepository;
-    }
 
     public void addTreatment(TreatmentRequest treatmentRequest, int specId) {
         Specialization specialization = specializationRepository.findById(specId)

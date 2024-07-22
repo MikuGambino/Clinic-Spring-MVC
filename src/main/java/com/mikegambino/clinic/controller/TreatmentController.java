@@ -4,6 +4,7 @@ import com.mikegambino.clinic.model.Treatment;
 import com.mikegambino.clinic.model.dto.TreatmentRequest;
 import com.mikegambino.clinic.service.TreatmentService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/specializations/{specId}/treatments")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class TreatmentController {
     private final TreatmentService treatmentService;
-    public TreatmentController(TreatmentService treatmentService) {
-        this.treatmentService = treatmentService;
-    }
 
     @GetMapping("/add")
     public String addTreatmentView(@PathVariable int specId, Model model) {
