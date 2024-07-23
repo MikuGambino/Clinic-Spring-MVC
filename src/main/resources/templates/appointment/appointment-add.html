@@ -28,11 +28,13 @@
                 <div class="spec-services" th:each="specialization : ${doctor.getSpecializations()}">
                     <div class="specialization-choose">
                         <p>Выберите специальность:</p>
-                        <input name="spec" required="" th:attr="onclick='showServices(this.value)'"
-                               th:id="'spec-' + ${specialization.getId()}" th:value="${specialization.getId()}"
-                               type="radio">
-                        <label th:attr="for='spec-' + ${specialization.getId()}"
-                               th:text="${specialization.getTitle()}"></label>
+                        <div class="select">
+                            <input name="spec" required="" th:attr="onclick='showServices(this.value)'"
+                                   th:id="'spec-' + ${specialization.getId()}" th:value="${specialization.getId()}"
+                                   type="radio">
+                            <label th:attr="for='spec-' + ${specialization.getId()}"
+                                   th:text="${specialization.getTitle()}"></label>
+                        </div>
                     </div>
                     <div class="services-block block-right">
                         <p class="services" hidden="hidden">Выберите услугу:</p>
