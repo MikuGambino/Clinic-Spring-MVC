@@ -129,8 +129,6 @@ $(function () {
    getSchedule($('#datepicker').datepicker().val());
 });
 
-// todo перенести в один файл
-
 function formatTime(date) {
     var res = [date.getHours(),date.getMinutes()].map(function (x) {
       return x < 10 ? "0" + x : x
