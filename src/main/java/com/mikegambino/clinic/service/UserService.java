@@ -27,7 +27,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import static com.mikegambino.clinic.util.AppConstants.*;
 
@@ -82,7 +81,6 @@ public class UserService {
         user.setRegistrationDateTime(LocalDateTime.now());
 
         userRepository.save(user);
-        Logger.getAnonymousLogger().info(user.getId().toString());
 
         Patient patient = Patient.builder()
                 .id(user.getId())

@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.logging.Logger;
-
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
@@ -37,16 +35,13 @@ public class AuthController {
     public String registerUser(@Valid @ModelAttribute("user") SignUpForm signUpForm,
                                BindingResult bindingResult) {
         if (userService.existsByEmail(signUpForm.getEmail())) {
-            Logger.getAnonymousLogger().info("1");
             bindingResult.rejectValue("email", "error.user", "Аккаунт с данной почтой уже зарегистрирован");
         }
         if (userService.existsByUsername(signUpForm.getUsername())) {
-            Logger.getAnonymousLogger().info("2");
             bindingResult.rejectValue("username", "error.user", "Аккаунт с данным логином уже существует");
         }
 
         if (bindingResult.hasErrors()) {
-            Logger.getAnonymousLogger().info(bindingResult.getAllErrors().toString());
             return "signup";
         }
 
