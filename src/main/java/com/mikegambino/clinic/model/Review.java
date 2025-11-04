@@ -26,7 +26,7 @@ public class Review {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
     @ManyToOne
-    @JoinColumn(name = "patient_id  ")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
     @Column(name = "call_date")
     private LocalDateTime callDateTime;
