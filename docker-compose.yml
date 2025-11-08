@@ -14,6 +14,7 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./db/create_tables.sql:/docker-entrypoint-initdb.d/001create_tables.sql
       - ./db/add_roles.sql:/docker-entrypoint-initdb.d/002add_roles.sql
+      - ./db/test_data.sql:/docker-entrypoint-initdb.d/003test_data.sql
     ports:
       - "5433:5432"
     networks:
