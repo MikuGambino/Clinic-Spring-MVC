@@ -16,7 +16,7 @@ import java.util.UUID;
 public class ImageService {
 
     public byte[] getImg(@PathVariable(value = "name") String name) throws IOException {
-        String path = "src/main/resources/static/img/";
+        String path = "/app/images/";
         var s = new FileInputStream(path + name);
         var file = s.readAllBytes();
         s.close();
@@ -25,7 +25,7 @@ public class ImageService {
 
     @SneakyThrows
     public String saveImage(MultipartFile multipartFile) {
-        String imagePath = "src/main/resources/static/img/";
+        String imagePath = "/app/images/";
         String name = UUID.randomUUID().toString();
         var split = Objects.requireNonNull(multipartFile.getOriginalFilename()).split("\\.");
         String fullname = name + "." + split[1];

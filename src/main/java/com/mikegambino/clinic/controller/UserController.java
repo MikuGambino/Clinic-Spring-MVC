@@ -67,6 +67,7 @@ public class UserController {
     public String addDoctorRoleView(@PathVariable int id, Model model) {
         if (doctorService.doctorExist(id)) {
             DoctorResponse doctor = doctorService.getDoctorResponse(id);
+            doctor.setEndWorkDate(null);
             model.addAttribute("doctor", doctor);
         } else {
             model.addAttribute("doctor", new DoctorRequest());

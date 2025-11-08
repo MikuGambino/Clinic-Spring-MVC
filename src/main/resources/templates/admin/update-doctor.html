@@ -32,7 +32,7 @@
                 <option th:value="0">Не активен</option>
             </select>
             <div class="buttons-block-around">
-                <input type="button" th:href="@{/doctors/{id}/manage/admin(id=${doctor.getId()})}" value="Назад" class="button">
+                <a th:href="@{/doctors/{id}/manage/admin(id=${doctor.getId()})}" class="button">Назад</a>
                 <input class="button" type="submit" value="Сохранить">
             </div>
         </form>

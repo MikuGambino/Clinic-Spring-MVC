@@ -126,8 +126,8 @@ public class DoctorController {
     @GetMapping("/{id}/update/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String doctorUpdateByAdminInfoView(@PathVariable int id, Model model) {
-        DoctorRequest doctorRequest = doctorService.getDoctorRequest(id);
-        model.addAttribute("doctor", doctorRequest);
+        DoctorResponse doctorResponse = doctorService.getDoctorResponse(id);
+        model.addAttribute("doctor", doctorResponse);
         model.addAttribute("doctorId", id);
         return "admin/update-doctor";
     }

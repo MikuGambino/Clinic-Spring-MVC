@@ -17,9 +17,9 @@
               enctype="multipart/form-data"
               th:object="${doctor}">
             <label for="name">Имя:</label>
-            <input type="text" th:field="*{name}" id="name" placeholder="Имя">
-            <label for="surname">Фамилия:</label>
             <input type="text" th:field="*{surname}" id="surname" placeholder="Фамилия">
+            <label for="surname">Фамилия:</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Имя">
             <label for="patronymic">Отчество:</label>
             <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Отчество">
             <label for="description">Описание:</label>
