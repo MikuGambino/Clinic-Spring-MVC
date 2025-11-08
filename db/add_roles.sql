@@ -8,4 +8,4 @@ INSERT INTO users(password, username, email, surname, name, patronymic, gender, 
 VALUES ('$2a$10$7ZP5PJuzhGoikMiJM4OOX.HVUuPlwn8DsmZoIXpXuwuhtaypyM04u', 12345, 'dan.k-2011@yandex.ru', 'Кузнецов', 'Даниил', 'Андреевич', 'Мужской', '2001-11-07');
 
 INSERT INTO user_role(user_id, role_id)
-VALUES (1, 1), (1, 3);
+VALUES (1, 1), (1,2), (1, 3);
