@@ -2,6 +2,8 @@
 
 A simple information system for a clinic
 
+Default admin login&password: 12345
+
 ## Roles
 ### Patient
 - Make appointments with doctors
